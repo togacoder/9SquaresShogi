@@ -13,7 +13,7 @@ class displayClass {
      }
 
     /**
-     * sample
+     * コンソール画面への表示確認用
      */
     private function sample() {
         $ary = array("hu", "ou", "_");
@@ -52,7 +52,7 @@ class displayClass {
      * @param string $pieceId
      * @return string
      */
-    private function  convertPieceIdToJp($pieceId) {
+    private function convertPieceIdToJp($pieceId) {
         $aryPieceToJp = array(
             'hu' => '歩',
             'kyou' => '香',
