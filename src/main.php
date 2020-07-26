@@ -1,7 +1,7 @@
 <?php
 
 require("initBoard.php");
-require("display.php");
+require("consoleDisplay.php");
 require("movePiece.php");
 
 $main = new MainClass;
@@ -9,7 +9,7 @@ $main->main();
 
 class MainClass {
     public function main() {
-        $display = new DisplayClass;
+        $display = new ConsoleDisplayClass;
         $movePiece = new MovePieceClass;
         // 初期盤面を表示
         $aryBoard = initBoardClass::initBoard();

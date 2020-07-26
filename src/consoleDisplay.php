@@ -8,24 +8,23 @@ const ENEMY = 2;
 
 
 /**
- * コンソール画面に表示
+ * コンソール画面に表示するためのクラス
  */
-class DisplayClass {
+class ConsoleDisplayClass {
     /**
-     * コンソール画面への表示
      * @param array $boardInfo
      */
     public function display($boardInfo) {
-        self::keepPieceDisplay($boardInfo[0]);
-        self::boardPieceDisplay(array_slice($boardInfo, 1, 3));
-        self::keepPieceDisplay($boardInfo[4]);
+        self::holdingPiecesDisplay($boardInfo[0]);
+        self::onBoardDisplay(array_slice($boardInfo, 1, 3));
+        self::holdingPiecesDisplay($boardInfo[4]);
     }
 
     /**
-     * 盤面の駒の表示
+     * 盤上の駒の表示
      * @param array $pieceAry
      */
-    private function boardPieceDisplay($pieceAry) {
+    private function onBoardDisplay($pieceAry) {
         $nums = array("Ｃ", "Ｂ", "Ａ");
         $count = 1;
         foreach ($nums as $num) {
@@ -48,7 +47,7 @@ class DisplayClass {
      * 持ち駒の表示
      * @param array $pieceAry
      */
-    private function keepPieceDisplay($pieceAry) {
+    private function holdingPiecesDisplay($pieceAry) {
         self::lineDrow();
         foreach ($pieceAry as $piece) {
             self::pieceDisplay($piece);
@@ -58,22 +57,22 @@ class DisplayClass {
     }
 
     /**
-     * 駒の表示
+     * 駒を表示
      * @param string $pieceStr
      */
     private function pieceDisplay($pieceStr) {
         $pieceInfo = self::pieceInfoShaping($pieceStr);
         if ($pieceInfo['team'] == FRIEND) {
-            echo '| ' . self::colorEcho(BLUE, self::convertPieceIdToJp($pieceInfo['type'])) . ' ';
+            echo '| ' . self::colorEcho(BLUE, self::convertPieceTypeToJapanese($pieceInfo['type'])) . ' ';
         } else if($pieceInfo['team'] == ENEMY) {
-            echo '| ' . self::colorEcho(RED, self::convertPieceIdToJp($pieceInfo['type'])) . ' ';
+            echo '| ' . self::colorEcho(RED, self::convertPieceTypeToJapanese($pieceInfo['type'])) . ' ';
         } else {
-            echo '| ' . self::colorEcho(WHITE_PANEL, self::convertPieceIdToJp($pieceInfo['type'])) . ' ';
+            echo '| ' . self::colorEcho(WHITE_PANEL, self::convertPieceTypeToJapanese($pieceInfo['type'])) . ' ';
         }
     }
 
     /**
-     * 駒の情報を整形
+     * 駒の情報を種類と持ち主に分ける
      * @param string $pieceStr
      * @return array $pieceInfo
      */
@@ -111,11 +110,11 @@ class DisplayClass {
     }
 
     /**
-     * pieceIdから日本語に変換する。
+     * 駒の種類を日本語に変換する。
      * @param string $pieceId
      * @return string
      */
-    private function convertPieceIdToJp($pieceId) {
+    private function convertPieceTypeToJapanese($pieceId) {
         $aryPieceToJp = array(
             'hu' => '歩',
             'kyo' => '香',
