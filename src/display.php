@@ -1,31 +1,21 @@
 <?php
+
 const RED = 31;
 const BLUE = 34;
 const WHITE_PANEL = 47;
 const FRIEND = 1;
 const ENEMY = 2;
 
-displayClass::debug();
 
-class displayClass {
-    /**
-     * Debug
-     */
-     public function debug() {
-        $boardInfo = array(["hu2", "o2", "gin2"],
-                           ["_", "_", "_"],
-                           ["to2", "_", "_"],
-                           ["_", "kin1", "_"],
-                           ["kin1", "_", "_"]);
-
-         self::display($boardInfo);
-     }
-
+/**
+ * コンソール画面に表示
+ */
+class DisplayClass {
     /**
      * コンソール画面への表示
      * @param array $boardInfo
      */
-    private function display($boardInfo) {
+    public function display($boardInfo) {
         self::keepPieceDisplay($boardInfo[0]);
         self::boardPieceDisplay(array_slice($boardInfo, 1, 3));
         self::keepPieceDisplay($boardInfo[4]);
@@ -36,7 +26,7 @@ class displayClass {
      * @param array $pieceAry
      */
     private function boardPieceDisplay($pieceAry) {
-        $nums = array("Ａ", "Ｂ", "Ｃ");
+        $nums = array("Ｃ", "Ｂ", "Ａ");
         $count = 1;
         foreach ($nums as $num) {
             echo "  $num ";
@@ -138,7 +128,7 @@ class displayClass {
             'uma' => '馬',
             'ryu' => '竜',
             'o' => '王',
-            '_' => '　');
+            '-' => '　');
 
         return $aryPieceToJp[$pieceId];
     }
